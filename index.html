@@ -4,24 +4,27 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="stylesheets/styles.css">
   <title>Frontend Mentor | FAQ Accordion Card</title>
 </head>
 <body>
   <div class="main-container">
     <div class="image-container">
-      <img src="images/illustration-woman-online-mobile.svg" alt="Illustration woman online">
+      <img class="image" src="images/illustration-woman-online-mobile.svg" alt="Illustration woman online">
     </div>
     <main class="main">
       <section class="faq">
         <h1 class="main-title">FAQ</h1>
-        <ul class="accordion">
+        <ul id="accordion" class="accordion">
           <li class="accordion-item-container">
             <article class="accordion-item">
               <h2 class="accordion-question">
-                How many team members can I invite? <img src="images/icon-arrow-down.svg" alt="Accordion toggle" class="accordion-collapse-toggle">
+                How many team members can I invite?
               </h2>
-              <div class="collapsable">
-                <p class="collapsable-text">
+              <div class="collapsible">
+                <p class="collapsible-text">
                   You can invite up to 2 additional users on the Free plan.
                   There is no limit on team members for the Premium plan.
                 </p>
@@ -31,10 +34,10 @@
           <li class="accordion-item-container">
             <article class="accordion-item">
               <h2 class="accordion-question">
-                What is the maximum file upload size? <img src="images/icon-arrow-down.svg" alt="Accordion toggle" class="accordion-collapse-toggle">
+                What is the maximum file upload size?
               </h2>
-              <div class="collapsable">
-                <p class="collapsable-text">
+              <div class="collapsible">
+                <p class="collapsible-text">
                   No more than 2GB. All files in your account must fit your
                   allotted storage space.
                 </p>
@@ -44,10 +47,10 @@
           <li class="accordion-item-container">
             <article class="accordion-item">
               <h2 class="accordion-question">
-                How do I reset my password? <img src="images/icon-arrow-down.svg" alt="Accordion toggle" class="accordion-collapse-toggle">
+                How do I reset my password?
               </h2>
-              <div class="collapsable">
-                <p class="collapsable-text">
+              <div class="collapsible">
+                <p class="collapsible-text">
                   Click “Forgot password” from the login page or “Change password”
                   from your profile page. A reset link will be emailed to you.
                 </p>
@@ -57,10 +60,10 @@
           <li class="accordion-item-container">
             <article class="accordion-item">
               <h2 class="accordion-question">
-                Can I cancel my subscription? <img src="images/icon-arrow-down.svg" alt="Accordion toggle" class="accordion-collapse-toggle">
+                Can I cancel my subscription?
               </h2>
-              <div class="collapsable">
-                <p class="collapsable-text">
+              <div class="collapsible">
+                <p class="collapsible-text">
                   Yes! Send us a message and we’ll process your request no
                   questions asked.
                 </p>
@@ -70,10 +73,10 @@
           <li class="accordion-item-container">
             <article class="accordion-item">
               <h2 class="accordion-question">
-                Do you provide additional support? <img src="images/icon-arrow-down.svg" alt="Accordion toggle" class="accordion-collapse-toggle">
+                Do you provide additional support?
               </h2>
-              <div class="collapsable">
-                <p class="collapsable-text">
+              <div class="collapsible">
+                <p class="collapsible-text">
                   Chat and email support is available 24/7. Phone lines are open
                   during normal business hours.
                 </p>
@@ -84,5 +87,7 @@
       </section>
     </main>
   </div>
+
+  <script src="javascripts/main.js"></script>
 </body>
 </html>
