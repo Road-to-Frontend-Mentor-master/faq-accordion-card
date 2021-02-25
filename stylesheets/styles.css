@@ -12,6 +12,8 @@
   --dark-grayish-blue: hsl(240, 6%, 50%);
   --light-grayish-blue: hsl(240, 5%, 91%);
   --soft-red: hsl(14, 88%, 65%);
+
+  --image-offset: 100px;
 }
 
 body {
@@ -32,8 +34,29 @@ ul {
 
 .main-container {
   background-color: var(--white);
-  border-radius: 10px;
-  padding: 3rem 1.5rem;
+  border-radius: 23px;
+  padding: 0 1.5rem 3rem 1.5rem;
+  margin-top: var(--image-offset);
+}
+
+.image-container {
+  margin-top: calc(var(--image-offset) * -1);
+  margin-bottom: 60px;
+  width: 100%;
+  display: inline-block;
+  position: relative;
+}
+
+.image-container::after {
+  content: url(../images/bg-pattern-mobile.svg);
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.image-container .image {
+  height: 180px;
 }
 
 @media screen and (max-width: 768px) {
@@ -44,7 +67,7 @@ ul {
 
 .main-title {
   font-size: 2rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1.75rem;
 }
 
 .accordion {

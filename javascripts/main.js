@@ -44,12 +44,14 @@ const setCustomPropertyValue = (element, property, value) => {
  * @param { Event } e - Evento de tipo click que se produce cuando se clica
  * sobre el acordeón.
  */
+
+ 
 const handleAccordionClick = (e) => {
   const target = e.target;
 
   if (elementClasses(target).contains(DOM_CLASSES.accordionQuestion)) {
     const collapsibleContentDOMElement = target.nextElementSibling;
-    const accordionItemTitleDOMElement = collapsibleContentDOMElement.previousElementSibling;
+    const accordionItemTitleDOMElement = target;
 
     if (elementClasses(collapsibleContentDOMElement).contains(DOM_CLASSES.isShown)) {
       setCustomPropertyValue(collapsibleContentDOMElement, 'max-height', 0);
