@@ -129,14 +129,16 @@ ul {
   }
 }
 
-.image-container .image {
-  
-}
-
 @media screen and (min-width: 1080px) {
   .image-container .image {
     transform: translateX(-75px);
     width: 471px;
+  }
+}
+
+@media screen and (min-width: 1080px) {
+  .main {
+    align-self: flex-start;
   }
 }
 
@@ -172,9 +174,24 @@ ul {
   margin-bottom: 1rem;
 }
 
+@media screen and (min-width: 1080px) {
+  .accordion-question {
+    transition: color .2s;
+  }
+  
+  .accordion-question:hover {
+    cursor: pointer;
+    color: var(--soft-red);
+  }
+}
+
 .accordion-question::after {
   content: url(../images/icon-arrow-down.svg);
   transition: transform .2s;
+}
+
+.accordion-question.content-is-shown {
+  font-weight: 700;
 }
 
 .accordion-question.content-is-shown::after {

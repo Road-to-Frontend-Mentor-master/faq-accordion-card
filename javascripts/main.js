@@ -1,8 +1,6 @@
-const DOM_CLASSES = {
-  accordionQuestion: 'accordion-question',
-  isShown: 'is-shown',
-  contentIsShown: 'content-is-shown'
-}
+const IS_SHOWN = 'is-shown';
+const ACCORDION_QUESTION = 'accordion-question';
+const CONTENT_IS_SHOWN = 'content-is-shown';
 
 /**
  * Permite acceder a los métodos de las clases más comunes de un elemento,
@@ -46,16 +44,37 @@ const setCustomPropertyValue = (element, property, value) => {
  */
 
  
-const handleAccordionClick = (e) => {
-  const target = e.target;
+const handleAccordionClick = (e, accordionDOMElement) => {
+  const { target } = e;
 
-  if (elementClasses(target).contains(DOM_CLASSES.accordionQuestion)) {
+  // Comprobamos si el elemento sobre el que estamos clicando es el título de
+  // una sección del acordeón.
+  if (elementClasses(target).contains(ACCORDION_QUESTION)) {
     const collapsibleContentDOMElement = target.nextElementSibling;
     const accordionItemTitleDOMElement = target;
 
-    if (elementClasses(collapsibleContentDOMElement).contains(DOM_CLASSES.isShown)) {
+    // Comprobamos si la sección del acordeón sobre la que hemos clicado está
+    // abierta. Si es así, la cerramos.
+    if (elementClasses(collapsibleContentDOMElement).contains(IS_SHOWN)) {
       setCustomPropertyValue(collapsibleContentDOMElement, 'max-height', 0);
     } else {
+      const openedCollapsibleDOMElement = accordionDOMElement.querySelector(`.${IS_SHOWN}`);
+
+      // Al llegar a este punto, sabemos que hemos clicado sobre un título pero
+      // no sobre uno que esté abierto, por lo que tenemos que cerrar el otro
+      // que está abierto antes de abrir el que hemos clicado.
+      // Tenemos que comprobar si hay algún elemento abierto porque puede darse
+      // el caso de que no haya ninguno y nos de un error diciéndonos que no
+      // encuentra el elemento que queremos colapsar.
+      if (openedCollapsibleDOMElement) {
+        const openedCollapsibleTitleDOMElement = accordionDOMElement.querySelector(`.${CONTENT_IS_SHOWN}`);
+
+        setCustomPropertyValue(accordionDOMElement.querySelector(`.${IS_SHOWN}`), 'max-height', 0);
+        elementClasses(openedCollapsibleDOMElement).remove(IS_SHOWN);
+        elementClasses(openedCollapsibleTitleDOMElement).remove(CONTENT_IS_SHOWN);
+      }
+      
+      // Modificamos el max-height del elemento que queremos abrir.
       setCustomPropertyValue(
         collapsibleContentDOMElement,
         'max-height',
@@ -63,12 +82,14 @@ const handleAccordionClick = (e) => {
       );
     }
 
-    elementClasses(collapsibleContentDOMElement).toggle(DOM_CLASSES.isShown);
-    elementClasses(accordionItemTitleDOMElement).toggle(DOM_CLASSES.contentIsShown);
+    // Abrimos o cerramos (lo que toque) el colapsable sobre el que hemos
+    // clicado.
+    elementClasses(collapsibleContentDOMElement).toggle(IS_SHOWN);
+    elementClasses(accordionItemTitleDOMElement).toggle(CONTENT_IS_SHOWN);
   }
 }
 
 const accordionDOMElement = document.getElementById('accordion');
 const collapsibleDOMElements = [...accordionDOMElement.querySelectorAll('.collapsible')];
 
-accordionDOMElement.addEventListener('click', handleAccordionClick);
+accordionDOMElement.addEventListener('click', (e) => handleAccordionClick(e, accordionDOMElement));
